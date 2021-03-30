@@ -237,7 +237,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-03-30 22:01:14 / 修改时间：22:53:26" itemprop="dateCreated datePublished" datetime="2021-03-30T22:01:14+08:00">2021-03-30</time>
+      <time title="创建时间：2021-03-30 22:01:14 / 修改时间：22:57:54" itemprop="dateCreated datePublished" datetime="2021-03-30T22:01:14+08:00">2021-03-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -260,49 +260,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><img src="https://ae01.alicdn.com/kf/U737507f88fa64c359328774838247eda3.jpg">  </p>
-<h2 id="个人想法"><a href="#个人想法" class="headerlink" title="个人想法"></a>个人想法</h2><p>由于经历了上一题 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-integer/">力扣算法7-整数反转</a> 的折磨，看到这一道题，刷的一下，很快啊，我就有想法了  </p>
-<p>所以刻舟求剑，直接按着思路就来了，贴一下上一题的代码  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;算法7-整数反转</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int reverse(int x) &#123;</span><br><span class="line">        int INTMAX &#x3D; 2147483647;        &#x2F;&#x2F;2^32-1</span><br><span class="line">        int INTMIN &#x3D; -2147483648;       &#x2F;&#x2F;-2^31</span><br><span class="line">        int rev &#x3D; 0;</span><br><span class="line">        while(x!&#x3D;0)&#123;</span><br><span class="line">            int n&#x3D;x%10;</span><br><span class="line">            x &#x3D; x&#x2F;10;</span><br><span class="line">            &#x2F;&#x2F;判断反转后数值是否大于2^32-1 </span><br><span class="line">            if(rev &gt; INTMAX&#x2F;10 || (rev &#x3D;&#x3D; INTMAX&#x2F;10 &amp;&amp; n&gt;7))&#123;</span><br><span class="line">                return 0;</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F;判断反转后数值是否大于-2^31</span><br><span class="line">            if(rev &lt; INTMIN&#x2F;10 || (rev &#x3D;&#x3D; INTMIN&#x2F;10 &amp;&amp; n&lt;-8))&#123;</span><br><span class="line">                return 0;</span><br><span class="line">            &#125;</span><br><span class="line">            rev &#x3D; rev * 10 + n;</span><br><span class="line">        &#125;</span><br><span class="line">        return rev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line"></span><br><span class="line">好了，~~标准答案~~三下五除二就出来了  </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>class Solution {<br>public:<br>    bool isPalindrome(int x) {<br>        int ori = x;<br>        int rev = 0;<br>        if(x&lt;0 || (0==x%10 &amp;&amp; x!=0)) return false;<br>        while(x!=0){<br>            int pop = x % 10;<br>            x = x / 10;<br>            rev=rev*10 + pop;<br>        }<br>        return rev == ori;<br>    }<br>};</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然鹅出问题了。。。。  </span><br><span class="line">报错  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>Line 10: Char 20: runtime error: signed integer overflow: 998765432 * 10 cannot be represented in type ‘int’ (solution.cpp)<br>SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior prog_joined.cpp:19:20</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">看了一下错误，当输入数是1234567899时，反转过后的数 998765432 * 10 已经大于 2^32-1 了，造成了数据溢出。。。。。  </span><br><span class="line"></span><br><span class="line">好家伙，居然被这个卡住了  </span><br><span class="line"></span><br><span class="line">而且题目并没有对输入的数作要求，所以我们即使输入一个很大的数也应该可以判断，所以我的代码就出问题了  </span><br><span class="line"></span><br><span class="line">那么我们要怎么办呢？既然全部数字反转太大，那么我们就只反转一半数字吧  </span><br><span class="line"></span><br><span class="line">说实话这里我的思路有点卡住了，所以看了看解题思路  </span><br><span class="line"></span><br><span class="line">![题解思路](https:&#x2F;&#x2F;assets.leetcode-cn.com&#x2F;solution-static&#x2F;9&#x2F;9_fig1.png)  </span><br><span class="line"></span><br><span class="line">要分奇偶判断啊，我人晕了，本来就麻烦的算法还要加上奇偶判断，让脑子卡住的我~~雪上加霜~~  </span><br><span class="line"></span><br><span class="line">但是我瞄了一眼答案（真的是一眼），灵光穿脑，soga  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>class Solution {<br>public:<br>    bool isPalindrome(int x) {<br>        int reveredNum = 0;<br>        if(x&lt;0 || (0==x%10 &amp;&amp; x!=0)) return false;<br>        while(x&gt;reveredNum){<br>            int pop = x%10;<br>            x=x/10;<br>            reveredNum = reveredNum * 10 + pop;<br>        }<br>        return x == reveredNum || x == reveredNum/10;<br>    }<br>};</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">正确答案就出来了  </span><br><span class="line"></span><br><span class="line">其实只要反转数大于原数那么就相当于已经对一半的数进行了反转，那么只要再分奇偶去判断反转后的数与原数是否相等就可以了  </span><br><span class="line"></span><br><span class="line">有点难看懂，但结合上面的思路图或许就可以了</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 标准答案及方法</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>// C++</p>
-<p>class Solution {<br>public:<br>    bool isPalindrome(int x) {<br>        // 特殊情况：<br>        // 如上所述，当 x &lt; 0 时，x 不是回文数。<br>        // 同样地，如果数字的最后一位是 0，为了使该数字为回文，<br>        // 则其第一位数字也应该是 0<br>        // 只有 0 满足这一属性<br>        if (x &lt; 0 || (x % 10 == 0 &amp;&amp; x != 0)) {<br>            return false;<br>        }</p>
-<pre><code>    int revertedNumber = 0;
-    while (x &gt; revertedNumber) &#123;
-        revertedNumber = revertedNumber * 10 + x % 10;
-        x /= 10;
-    &#125;
-
-    // 当数字长度为奇数时，我们可以通过 revertedNumber/10 去除处于中位的数字。
-    // 例如，当输入为 12321 时，在 while 循环的末尾我们可以得到 x = 12，revertedNumber = 123，
-    // 由于处于中位的数字不影响回文（它总是与自己相等），所以我们可以简单地将其去除。
-    return x == revertedNumber || x == revertedNumber / 10;
-&#125;
-</code></pre>
-<p>};</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<p>// Java</p>
-<p>class Solution {<br>    public boolean isPalindrome(int x) {<br>        // 特殊情况：<br>        // 如上所述，当 x &lt; 0 时，x 不是回文数。<br>        // 同样地，如果数字的最后一位是 0，为了使该数字为回文，<br>        // 则其第一位数字也应该是 0<br>        // 只有 0 满足这一属性<br>        if (x &lt; 0 || (x % 10 == 0 &amp;&amp; x != 0)) {<br>            return false;<br>        }</p>
-<pre><code>    int revertedNumber = 0;
-    while (x &gt; revertedNumber) &#123;
-        revertedNumber = revertedNumber * 10 + x % 10;
-        x /= 10;
-    &#125;
-
-    // 当数字长度为奇数时，我们可以通过 revertedNumber/10 去除处于中位的数字。
-    // 例如，当输入为 12321 时，在 while 循环的末尾我们可以得到 x = 12，revertedNumber = 123，
-    // 由于处于中位的数字不影响回文（它总是与自己相等），所以我们可以简单地将其去除。
-    return x == revertedNumber || x == revertedNumber / 10;
-&#125;
-</code></pre>
-<p>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">还有一种简单解法  </span><br><span class="line"></span><br><span class="line">最好理解的一种解法就是先将 整数转为字符串 ，然后将字符串分割为数组，只需要循环数组的一半长度进行判断对应元素是否相等即可。  </span><br><span class="line">![](https:&#x2F;&#x2F;pic.leetcode-cn.com&#x2F;c61f710e3bca59da3e00034e9553cbd6036adc4cba9e667e98f788d54a9ca1be-file_1558924390364) </span><br><span class="line"></span><br><span class="line">这里只给出了Java的解法，有时间就把他改成C++（~~下次一定~~  </span><br></pre></td></tr></table></figure>
-<p>class Solution {<br>    public boolean isPalindrome(int x) {<br>        String reversedStr = (new StringBuilder(x + “”)).reverse().toString();<br>        return (x + “”).equals(reversedStr);<br>    }<br>}<br>```</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/30/%E5%8A%9B%E6%89%A3%E7%AE%97%E6%B3%95%E9%A2%989-%E5%9B%9E%E6%96%87%E6%95%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
